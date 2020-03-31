@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>data barang</title>
+	<!-- <link rel="stylesheet" type="text/css" href="template/bootstrap/css/bootstrap.min.css"> -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+		<!-- navbar for each page -->
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+
+	  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+	    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+	      <li class="nav-item active">
+	        <a class="nav-link" href="<?= base_url('barang'); ?>">Barang</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="<?= base_url('transaksi'); ?>">
+	        	Transaksi <span class="sr-only">(current)</span>
+	        </a>
+	      </li>
+	    </ul>
+	    <form class="form-inline my-2 my-lg-0">
+	      <h4> 
+	      	<span style="padding-right: 10px;">
+	      		<?= $this->session->userdata['username']; ?>	
+	    	  	</span>
+	    	  </h4>
+	    	  <a href="<?= base_url('user/logout'); ?>" class="btn btn-outline-info my-2 my-sm-0">Logout</a>	
+	    </form>
+	  </div>
+	</nav>
+
+
+		<!-- body of page -->
+	<div class="container">		
+		<br>
+		<center><h3>Data Barang</h3></center>
+		<a href="<?= base_url('barang/addItem'); ?>">
+			<button class="btn btn-primary">Tambah Barang</button>
+		</a> 
+		<br> <br>
+
+		<table class="table table-stripped">
+			<thead>
+				<tr>
+					<th>Kode Barang</th>
+					<th>Nama</th>
+					<th>Tipe</th>
+					<th>Kategori</th>
+					<th>Merk</th>
+					<th>Stok</th>
+					<th>Harga</th>
+					<th> Action
+					</th>
+				</tr>
+			</thead>
+		<?php foreach ($barangs as $barang) : ?>
+			<tbody>
+				<td><?= $barang['kode_barang']; ?></td>
+				<td><?= $barang['nama']; ?></td>
+				<td><?= $barang['tipe']; ?></td>
+				<td><?= $barang['kategori']; ?></td>
+				<td><?= $barang['merk']; ?></td>
+				<td><?= $barang['stok']; ?></td>
+				<td><?= $barang['harga']; ?></td>
+				<td>
+					<a href="<?= base_url('barang/replace/') . $barang['kode_barang'];?>">
+						<button type="button" class="btn btn-secondary">Edit</button>
+					</a>
+					<a href="<?= base_url('barang/delete/') . $barang['kode_barang']; ?>">
+						<button type="button" class="btn btn-danger">Delete</button>
+					</a>
+				</td>
+			</tbody>
+		<?php endforeach; ?>
+		</table>
+	</div>
+</body>
+</html>
