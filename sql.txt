@@ -1,0 +1,13 @@
+	Transaksi
+SELECT COUNT(transaksi.jasa_perbaikan) AS jumlah, SUM(transaksi.jasa_perbaikan) AS masuk FROM `transaksi` WHERE MONTH(tanggal_transaksi) = '12' AND YEAR(tanggal_transaksi) = '2000'
+
+	Detail
+SELECT SUM(detail.jumlah) as jumlah,SUM(detail.harga) as harga FROM `detail` 
+JOIN transaksi ON detail.kode_transaksi = transaksi.kode_transaksi
+WHERE MONTH(tanggal_transaksi) = '12' AND YEAR(tanggal_transaksi) = '2000'
+
+	Barang
+SELECT SUM(stok) AS Jumlah, SUM(harga) as Keluar FROM `barang`
+
+	Data
+SELECT month(tanggal_transaksi) as bulan, YEAR(tanggal_transaksi) as tahun FROM `transaksi` ORDER BY month(tanggal_transaksi
